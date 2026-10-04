@@ -11,10 +11,14 @@ white-with-tangerine theme, and flexible **React components**. Built from
 
 ## Packages
 
-| Package | Contents | Notes |
-|---|---|---|
-| [`@readyph/design-tokens`](packages/design-tokens) | tokens (TS) → generated **Tailwind preset** + **CSS-variable theme** | no React |
-| [`@readyph/ui`](packages/ui) | React components (Tailwind + Radix + Phosphor) + Storybook | peers: `react`, `react-dom`, `@phosphor-icons/react` |
+One install, `@readyph/ui`, with everything on subpaths:
+
+| Import | Contents |
+|---|---|
+| `@readyph/ui` | React components + design tokens (Tailwind + Radix + Phosphor) + Storybook |
+| `@readyph/ui/preset` | the **Tailwind preset** |
+| `@readyph/ui/theme.css` | the **CSS-variable theme** |
+| `@readyph/ui/styles.css` | fonts + theme + Tailwind base (import once) |
 
 ## Run the preview (Storybook)
 
@@ -38,7 +42,7 @@ npm run type-check
 
 ## Architecture
 
-- **Tokens** (`packages/design-tokens/src/tokens/*.ts`) are the single source of
+- **Tokens** (`packages/ui/src/tokens/*.ts`) are the single source of
   truth. `scripts/generate.ts` emits two consumable forms:
   - `css/theme.css` — CSS custom properties on `:root` (the **theming contract**).
     Colors are space-separated RGB channels, so Tailwind opacity utilities work.
