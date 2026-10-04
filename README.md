@@ -4,8 +4,10 @@ A standalone, installable design system: **design tokens on top of Tailwind**, a
 white-with-tangerine theme, and flexible **React components**. Built from
 [`kbase/concept/06-Design-system.md`](../kbase/concept/06-Design-system.md).
 
-> **Status:** system + preview built. Packaging (publish, versioning, CI, docs
-> deploy) is intentionally **deferred** — see [Deferred](#deferred).
+**📖 Live component catalog (Storybook):** https://readyph.github.io/ui-kit/
+
+> **Status:** packaging configured (publish, versioning, CI) and the Storybook
+> catalog is deployed to GitHub Pages — see [`PACKAGING.md`](PACKAGING.md).
 
 ## Packages
 
@@ -82,12 +84,7 @@ Every component ships as an independent, composable piece — there is no app sh
 - **Tailwind v3** (the `rgb(var(--x) / <alpha-value>)` preset model).
 - Link color → **tangerine** (`--ds-link` = primary 600).
 
-## Deferred
+## Still to do
 
-Not built yet, awaiting the go-ahead:
-
-- GitHub Packages publishing + `.npmrc` auth, scoped `@readyph/*` publish.
-- **Changesets** versioning + release workflow.
-- CI workflows (build/publish) and **Storybook → GitHub Pages / Chromatic** deploy.
-- `tsup`/Vite library build to `dist/` (`.js` + `.d.ts` + `.css`).
+- First publish to GitHub Packages — steps in [`PACKAGING.md`](PACKAGING.md).
 - Full per-component **test suite** (Vitest + Testing Library + axe) and lint configs.
