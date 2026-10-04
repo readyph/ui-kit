@@ -2,6 +2,11 @@
   "name": "@readyph/design-tokens",
   "version": "0.1.0",
   "description": "ReadyPH design tokens, Tailwind preset and CSS-variable theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readyph/ui-kit.git",
+    "directory": "packages/design-tokens"
+  },
   "type": "module",
   "sideEffects": [
     "*.css"
