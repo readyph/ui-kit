@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# ReadyPH Design System
+
+A standalone, installable design system: **design tokens on top of Tailwind**, a
+custom **white-with-tangerine** theme, and flexible **React components**.
+
+- **One source of truth** — brand (color, type, spacing, icons) and UI components,
+  versioned like any dependency.
+- **Built on Tailwind** — tokens drive a Tailwind **preset**; components are styled
+  with Tailwind utilities.
+- **Themeable** — a generic theme ships as **CSS custom properties**; a project
+  overrides it without forking, at runtime.
+- **Flexible** — the package owns *appearance*; the consuming project owns
+  *behavior and CTA* (what a button does, what it says, where a form submits).
+- **Accessible & keyboard-first** — WCAG 2.1 AA, a single visible focus ring, and
+  real keyboard support via headless Radix primitives.
+
+## Packages
+
+| Package | Contents |
+|---|---|
+| `@readyph/design-tokens` | tokens (TS), the **Tailwind preset**, the **CSS-variable theme** |
+| `@readyph/ui` | React components (Tailwind + Radix + Phosphor) |
+
+## How theming works
+
+Colors live as space-separated RGB channels in CSS variables, so Tailwind opacity
+utilities work and a project can retheme by redefining a variable — no rebuild:
+
+```css
+:root { --ds-primary-500: 245 132 31; }        /* default tangerine */
+.project-x { --ds-primary-500: 230 100 20; }   /* a project's accent */
+```
+
+A component uses `bg-primary-600`; the *value* comes from the variable.
+
+## Where to look
+
+- **Foundations** — Colors, Typography, Spacing, Radius, Shadows, Icons, Shortcuts.
+- **Components** — Actions, Forms, Feedback, Data display, Navigation, Overlays, Layout.
+- **Patterns → Dashboard** — the whole system composed into one screen.
+
+> Keyboard model: the package renders the **visual affordance** for shortcuts
+> (`<Kbd>` + `shortcutMode`); the **project binds the real keys**.

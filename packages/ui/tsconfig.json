@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      "@readyph/design-tokens": ["../design-tokens/src/index.ts"]
+    }
+  },
+  "include": ["src", ".storybook"]
+}

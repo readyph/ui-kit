@@ -1,0 +1,54 @@
+name: Release
+
+# Publishes @readyph/design-tokens and @readyph/ui to GitHub Packages via
+# Changesets. On push to main:
+#   • if there are unreleased changesets → opens/updates a "Version Packages" PR;
+#   • once that PR is merged (versions bumped, changesets consumed) → builds and
+#     publishes both packages.
+#
+# Assumes this directory (design/) is the git repository root, and that the repo
+# is owned by the `readyph` org/user (GitHub Packages requires the npm scope to
+# match the repository owner).
+
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: '@readyph'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create Release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          publish: npm run release
+          commit: 'chore: release packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
